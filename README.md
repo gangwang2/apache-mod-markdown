@@ -57,12 +57,15 @@ LoadModule markdown_module /usr/lib/apache2/modules/mod_markdown.so
 
     # If you want to use stylesheet.
     
-    # The Css file is relative to the Location as in url.
+    # The Css file is relative to the Location as in url. and the MarkownCss directive can be specified for multiple times
+    # to provide multiple style sheet files.
     # MarkdownCss style.css
     MarkdownHeader "<p>Header</p>"
     MarkdownFooter "<p>Footer</p>"
+    # If we specify the headerfile, footerfile, the wrapper, css, and header, footer directives are all off.
+    # and we need to take care of all of them inside the headerfile and footer file.
     # Or specify a file for them, they are file paths relative or absolute in filesystem, and they are handled
-    # differently than the inline ones above. (needs to try out).
+    # differently than the inline ones above.
     #MarkdownHeaderfile /var/www/markdown_header.html
     #MarkdownFooterfile /var/www/markdown_footer.html
 
