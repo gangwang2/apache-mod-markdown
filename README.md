@@ -10,7 +10,9 @@ mod_markdown is Markdown filter module for Apache HTTPD Server.
 * discount
 
   http://www.pell.portland.or.us/~orc/Code/discount/
-
+  
+  The code above has already been transformed as libmarkdown2-dev. It's not necessary to get discount.
+  
 For Debian/Ubuntu:
 
 ~~~
@@ -27,6 +29,13 @@ For Debian/Ubuntu:
 % make install
 ~~~
 
+Note: Ignore --with-apxs and --with-discount and let ./configure to guess at first. It can find them successfully.
+In my case, the ./configure guessed, as found in Makefile:
+~~~
+apxs = /usr/bin/apxs
+discount_dir = /usr
+
+~~~
 Note: `<DISCOUNT_DIR>` is the directory that contains the include directory that contains mkdio.h
 Probably you need to specify --with-discount=/usr or --with-discount=/usr/local
 
@@ -47,6 +56,7 @@ LoadModule markdown_module /usr/lib/apache2/modules/mod_markdown.so
     AddHandler markdown .md
 
     # If you want to use stylesheet.
+    # TODO(Gang): The directives have to be verified.  MarkdownHeaderHtml and MarkdownFooterHtml are not working as expected -- they can't pass conftest.
     # MarkdownCss style.css
     # MarkdownHeaderHtml "<p>Header</p>"
     # MarkdownFooterHtml "<p>Footer</p>"
