@@ -56,10 +56,15 @@ LoadModule markdown_module /usr/lib/apache2/modules/mod_markdown.so
     AddHandler markdown .md
 
     # If you want to use stylesheet.
-    # TODO(Gang): The directives have to be verified.  MarkdownHeaderHtml and MarkdownFooterHtml are not working as expected -- they can't pass conftest.
+    
+    # The Css file is relative to the Location as in url.
     # MarkdownCss style.css
-    # MarkdownHeaderHtml "<p>Header</p>"
-    # MarkdownFooterHtml "<p>Footer</p>"
+    MarkdownHeader "<p>Header</p>"
+    MarkdownFooter "<p>Footer</p>"
+    # Or specify a file for them, they are file paths relative or absolute in filesystem, and they are handled
+    # differently than the inline ones above. (needs to try out).
+    #MarkdownHeaderfile /var/www/markdown_header.html
+    #MarkdownFooterfile /var/www/markdown_footer.html
 
 </Location>
 ~~~
